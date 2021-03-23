@@ -132,6 +132,12 @@ sourcing `notify.plugin.zsh`.
 
         zstyle ':notify:*' always-check-active-window yes
 
+- Set custom check functions for active terminal (use this **before** source plugin):
+
+        function is-terminal-active() {
+                return false
+        }
+
 [terminal-notifier]: https://github.com/alloy/terminal-notifier 
 [libnotify]: https://github.com/GNOME/libnotify
 [iterm2]: http://www.iterm2.com/
