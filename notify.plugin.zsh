@@ -2,14 +2,16 @@
 
 plugin_dir="$(dirname $0:A)"
 
-if [[ "$TERM_PROGRAM" == 'iTerm.app' ]]; then
+if command -v is-terminal-active > /dev/null 2>&1; then
+    ;# do nothing since is-terminal-active is predefined
+elif [[ "$TERM_PROGRAM" == 'iTerm.app' ]]; then
     source "$plugin_dir"/applescript/functions
 elif [[ "$TERM_PROGRAM" == 'Apple_Terminal' ]]; then
     source "$plugin_dir"/applescript/functions
 elif [[ "$DISPLAY" != '' ]] && command -v xdotool > /dev/null 2>&1 &&  command -v wmctrl > /dev/null 2>&1; then
     source "$plugin_dir"/xdotool/functions
 else
-    echo "zsh-notify: unsupported environment" >&2
+    echo "zsh-notify: unsupported environment, define custom is-terminal-active function or switch to supported environment" >&2
     return
 fi
 
